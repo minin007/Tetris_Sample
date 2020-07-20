@@ -23,13 +23,17 @@ class Shape(Sprite):
 
     def down(self):
         """控制方块的移动"""
-        if Setting.down_flag:
+        if Setting.stop_flag:
+            self.speed = 0
+        elif Setting.down_flag:
             self.speed = 2
         else: self.speed = self.initial_speed
         self.now_pos = Pos(self.now_pos) + (0, 1)
 
     def move(self):
-        if Setting.moving_left:
+        if Setting.stop_flag:
+            pass
+        elif Setting.moving_left:
             self.now_pos = Pos(self.now_pos) + (-1, 0)
         elif Setting.moving_right:
             self.now_pos = Pos(self.now_pos) + (1, 0)
@@ -39,7 +43,9 @@ class Shape(Sprite):
         
     def change(self):
         """改变方块的方向"""
-        if self.name == '-':
+        if Setting.stop_flag:
+            pass
+        elif self.name == '-':
             if self.state == 0:
                 self.shape[0] = Pos(self.shape[0]) + (0, 0)
                 self.shape[1] = Pos(self.shape[1]) + (-1, 1)

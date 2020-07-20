@@ -15,9 +15,10 @@ class Setting():
                     'J': (0, 0, 200),
                     'S': (150, 150, 0),
                     'Z': (0, 150, 150),
-                    'T': (150, 0, 150)}
+                    'T': (150, 0, 150),
+                    'b': (200, 200, 200)}
     initial_speed = 1
-    square_size = 30
+    square_size = 29
     # 标志位
     state = 0
     moving_left = False
@@ -40,6 +41,7 @@ class Setting():
     for i in range(25):
         board_pos.append([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
     board_pos.append([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    
 
     # 提示信息设置
     help_msg_x = 380
