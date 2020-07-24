@@ -25,5 +25,7 @@ def run_game():
         game_function.check_events(screen, shape)
         Setting.stop_flag = False
         game_function.update_screen(screen, shape)
+        if Setting.end_flag == True:
+            game_function.gameover(screen)
         
 run_game()

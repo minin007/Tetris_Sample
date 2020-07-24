@@ -26,6 +26,7 @@ class Setting():
     down_flag = False
     space_flag = False
     stop_flag = False
+    end_flag = False
     # 屏幕设置
     screen_width = 600
     screen_height = 700

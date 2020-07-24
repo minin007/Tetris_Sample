@@ -31,6 +31,15 @@ class Shape(Sprite):
         self.now_pos = Pos(self.now_pos) + (0, 1)
 
     def move(self):
+        '''左右移动及左右碰撞识别'''
+        for shape_pos in self.shape:
+            now_pos = Pos(shape_pos) + self.now_pos
+            now_pos = Pos(now_pos) + (0, 4)
+            next_pos = (shape_pos[1] + 1, shape_pos[0])    
+            if Setting.board_pos[now_pos[1]][now_pos[0] - 1] == 1 and next_pos not in self.shape:
+                Setting.moving_left = False
+            if Setting.board_pos[now_pos[1]][now_pos[0] + 1] == 1 and next_pos not in self.shape:
+                Setting.moving_right = False
         if Setting.stop_flag:
             pass
         elif Setting.moving_left:
@@ -43,6 +52,7 @@ class Shape(Sprite):
         
     def change(self):
         """改变方块的方向"""
+        
         if Setting.stop_flag:
             pass
         elif self.name == '-':

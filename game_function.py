@@ -50,7 +50,7 @@ def update_tetris(screen, shape):
     # shape.change()
     for now_pos in shape.shape:
         now_pos = Pos(now_pos) + shape.now_pos
-        now_pos = ((now_pos[0]-1)*30+40, now_pos[1]*30+50, Setting.square_size, Setting.square_size)
+        now_pos = ((now_pos[0]-1)*30+40, (now_pos[1] - 1)*30+50, Setting.square_size, Setting.square_size)
         pygame.draw.rect(screen, shape.tetris_color, now_pos)
         
 def update_board(screen, shape):
@@ -66,7 +66,9 @@ def update_board(screen, shape):
             now_pos_show = Pos(now_pos_show) + shape.now_pos
             now_pos_show = Pos(now_pos_show) + (0, 4)
             Setting.board_pos[now_pos_show[1]][now_pos_show[0]] = 1
-        
+    for i in range(1, 11):
+        if Setting.board_pos[6][i] == 1:
+            Setting.end_flag = True    
     for i in range(1, 11):
         for j in range(5, 25):
             if Setting.board_pos[j][i] == 1:
@@ -99,6 +101,17 @@ def startgame():
     """开始游戏"""
     pass
 
-def gameover():
+def gameover(screen):
     """游戏结束"""
+    endmsg_pos = (Setting.screen_width/2 - 200, Setting.screen_height/2 -50)
+    gameover_msg = pygame.image.load('./source/gameover.png')
+    screen.blit(gameover_msg, endmsg_pos)
+    pygame.display.flip()
+    while True:
+        for event in pygame.event.get():
+            # print(event.type)
+            if event.type == pygame.QUIT:
+                Setting.stop_flag = True
+                pygame.quit()
+                sys.exit()
     
