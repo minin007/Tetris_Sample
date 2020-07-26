@@ -67,6 +67,11 @@ def update_board(screen, shape):
             if Setting.board_pos[j][i] == 1:
                 now_pos = ((i - 1)*30+40, (j - 5)*30+50, Setting.square_size, Setting.square_size)
                 pygame.draw.rect(screen, Setting.tetris_color['b'], now_pos)
+    for j in range(5, 25):
+        if Setting.board_pos[j] == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]:
+            Setting.board_pos.remove([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+            Setting.board_pos.insert(5,[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+            Setting.board_pos.append([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 
 
 def update_screen(screen, shape):
