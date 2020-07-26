@@ -25,7 +25,7 @@ def check_events(screen, shape):
                 shape.change()
             elif event.key == pygame.K_DOWN:
                 Setting.down_flag = True
-                pygame.time.set_timer(pygame.USEREVENT, 500)
+                pygame.time.set_timer(pygame.USEREVENT, 200)
             elif event.key == pygame.K_SPACE:
                 Setting.space_flag = True
         
@@ -39,7 +39,7 @@ def check_events(screen, shape):
                 Setting.moving_left = False
             elif event.key == pygame.K_DOWN:
                 Setting.down_flag = False
-                pygame.time.set_timer(pygame.USEREVENT, 1000)
+                pygame.time.set_timer(pygame.USEREVENT, 500)
             elif event.key == pygame.K_SPACE:
                 Setting.space_flag = False
         elif event.type == pygame.USEREVENT and Setting.stop_flag == False:
@@ -52,22 +52,13 @@ def update_tetris(screen, shape):
     # shape.change()
     for now_pos in shape.shape:
         now_pos = Pos(now_pos) + shape.now_pos
-        now_pos = ((now_pos[0]-1)*30+40, (now_pos[1] - 1)*30+50, Setting.square_size, Setting.square_size)
-        pygame.draw.rect(screen, shape.tetris_color, now_pos)
+        if now_pos[1] > 0 and now_pos[1] < 21:
+            now_pos = (now_pos[0]*30+10, now_pos[1]*30+20, Setting.square_size, Setting.square_size)
+            pygame.draw.rect(screen, shape.tetris_color, now_pos)
         
 def update_board(screen, shape):
     """更新版面状态"""    
-    for shape_pos in shape.shape:
-        now_pos = Pos(shape_pos) + shape.now_pos
-        now_pos = Pos(now_pos) + (0, 4)
-        next_pos = (shape_pos[1] + 1, shape_pos[0])    
-        if Setting.board_pos[now_pos[1] + 1][now_pos[0]] == 1 and next_pos not in shape.shape:
-            Setting.stop_flag = True
-    if Setting.stop_flag and shape.now_pos[1] > 1:
-        for now_pos_show in shape.shape:
-            now_pos_show = Pos(now_pos_show) + shape.now_pos
-            now_pos_show = Pos(now_pos_show) + (0, 4)
-            Setting.board_pos[now_pos_show[1]][now_pos_show[0]] = 1
+    
     for i in range(1, 11):
         if Setting.board_pos[6][i] == 1:
             Setting.end_flag = True    
@@ -111,6 +102,10 @@ def startgame(screen):
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     if mouse_x > 450 and mouse_x < 530 and mouse_y > 550 and mouse_y < 590:
                         Setting.end_flag = False
+                elif event.type == pygame.QUIT:
+                    Setting.stop_flag = True
+                    pygame.quit()
+                    sys.exit()
             if Setting.end_flag == False:
                 break
 
@@ -127,4 +122,6 @@ def gameover(screen):
                 Setting.stop_flag = True
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                startgame(screen)
     

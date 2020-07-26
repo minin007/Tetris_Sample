@@ -23,12 +23,20 @@ class Shape(Sprite):
 
     def down(self):
         """控制方块的移动"""
-        if Setting.stop_flag:
-            self.speed = 0
-        elif Setting.down_flag:
-            self.speed = self.initial_speed/2
-        else: self.speed = self.initial_speed
-        self.now_pos = Pos(self.now_pos) + (0, 1)
+        for shape_pos in self.shape:
+            now_pos = Pos(shape_pos) + self.now_pos
+            now_pos = Pos(now_pos) + (0, 4)
+            next_pos = (shape_pos[1] + 1, shape_pos[0])    
+            if Setting.board_pos[now_pos[1] + 1][now_pos[0]] == 1 and next_pos not in self.shape:
+                Setting.stop_flag = True
+        if Setting.stop_flag and self.now_pos[1] > 1:
+            for now_pos_show in self.shape:
+                now_pos_show = Pos(now_pos_show) + self.now_pos
+                now_pos_show = Pos(now_pos_show) + (0, 4)
+                Setting.board_pos[now_pos_show[1]][now_pos_show[0]] = 1
+        if Setting.stop_flag == False:
+            
+            self.now_pos = Pos(self.now_pos) + (0, 1)
 
     def move(self):
         '''左右移动及左右碰撞识别'''
