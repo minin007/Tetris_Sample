@@ -26,7 +26,7 @@ class Shape(Sprite):
         if Setting.stop_flag:
             self.speed = 0
         elif Setting.down_flag:
-            self.speed = 2
+            self.speed = self.initial_speed/2
         else: self.speed = self.initial_speed
         self.now_pos = Pos(self.now_pos) + (0, 1)
 

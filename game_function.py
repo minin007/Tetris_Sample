@@ -25,6 +25,7 @@ def check_events(screen, shape):
                 shape.change()
             elif event.key == pygame.K_DOWN:
                 Setting.down_flag = True
+                pygame.time.set_timer(pygame.USEREVENT, 500)
             elif event.key == pygame.K_SPACE:
                 Setting.space_flag = True
         
@@ -38,6 +39,7 @@ def check_events(screen, shape):
                 Setting.moving_left = False
             elif event.key == pygame.K_DOWN:
                 Setting.down_flag = False
+                pygame.time.set_timer(pygame.USEREVENT, 1000)
             elif event.key == pygame.K_SPACE:
                 Setting.space_flag = False
         elif event.type == pygame.USEREVENT and Setting.stop_flag == False:
@@ -61,7 +63,7 @@ def update_board(screen, shape):
         next_pos = (shape_pos[1] + 1, shape_pos[0])    
         if Setting.board_pos[now_pos[1] + 1][now_pos[0]] == 1 and next_pos not in shape.shape:
             Setting.stop_flag = True
-    if Setting.stop_flag:
+    if Setting.stop_flag and shape.now_pos[1] > 1:
         for now_pos_show in shape.shape:
             now_pos_show = Pos(now_pos_show) + shape.now_pos
             now_pos_show = Pos(now_pos_show) + (0, 4)
@@ -92,14 +94,25 @@ def creat_tetris():
     """生成一个Tetris"""
     
     new_shape = random.choice('-OLJSZT')
-    # shape = Shape(new_shape)
-    # tetris.add(shape)
     return new_shape
     
 
-def startgame():
+def startgame(screen):
     """开始游戏"""
-    pass
+    startmsg_pos = (450, 550)
+    start_msg = pygame.image.load('./source/开始.png')
+    screen.blit(start_msg, startmsg_pos)
+    pygame.display.flip()
+    if Setting.end_flag:
+        while True:
+            for event in pygame.event.get():
+                # print(event.type)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
+                    if mouse_x > 450 and mouse_x < 530 and mouse_y > 550 and mouse_y < 590:
+                        Setting.end_flag = False
+            if Setting.end_flag == False:
+                break
 
 def gameover(screen):
     """游戏结束"""

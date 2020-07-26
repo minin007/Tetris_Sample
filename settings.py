@@ -17,7 +17,7 @@ class Setting():
                     'Z': (0, 150, 150),
                     'T': (150, 0, 150),
                     'b': (200, 200, 200)}
-    initial_speed = 1
+    initial_speed = 1000
     square_size = 29
     # 标志位
     state = 0
@@ -25,8 +25,8 @@ class Setting():
     moving_right = False
     down_flag = False
     space_flag = False
-    stop_flag = False
-    end_flag = False
+    stop_flag = True
+    end_flag = True
     # 屏幕设置
     screen_width = 600
     screen_height = 700
