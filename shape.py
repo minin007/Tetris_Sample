@@ -63,122 +63,19 @@ class Shape(Sprite):
         
         if Setting.stop_flag:
             pass
-        elif self.name == '-':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (-2, 2)
-                self.shape[3] = Pos(self.shape[3]) + (1, -1)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (2, -2)
-                self.shape[3] = Pos(self.shape[3]) + (-1, 1)
-                self.state = 0
-        elif self.name == 'L':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (0, -2)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (2, 0)
-                self.state += 1
-            elif self.state == 2:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (0, 2)
-                self.state += 1
-            elif self.state == 3:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (-2, 0)
-                self.state = 0
-        elif self.name == 'J':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (-2, 0)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (0, -2)
-                self.state += 1
-            elif self.state == 2:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (2, 0)
-                self.state += 1
-            elif self.state == 3:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (0, 2)
-                self.state = 0
-        elif self.name == 'S':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (1, -1)
-                self.shape[1] = Pos(self.shape[1]) + (0, 0)
-                self.shape[2] = Pos(self.shape[2]) + (1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (0, 2)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (-1, 1)
-                self.shape[1] = Pos(self.shape[1]) + (0, 0)
-                self.shape[2] = Pos(self.shape[2]) + (-1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (0, -2)
-                self.state = 0
-        elif self.name == 'Z':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (-1, 1)
-                self.shape[1] = Pos(self.shape[1]) + (0, 0)
-                self.shape[2] = Pos(self.shape[2]) + (1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (2, 0)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (1, -1)
-                self.shape[1] = Pos(self.shape[1]) + (0, 0)
-                self.shape[2] = Pos(self.shape[2]) + (-1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (-2, 0)
-                self.state = 0
-        elif self.name == 'T':
-            if self.state == 0:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (1, 1)
-                self.state += 1
-            elif self.state == 1:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (-1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (-1, 1)
-                self.state += 1
-            elif self.state == 2:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, 1)
-                self.shape[2] = Pos(self.shape[2]) + (1, -1)
-                self.shape[3] = Pos(self.shape[3]) + (-1, -1)
-                self.state += 1
-            elif self.state == 3:
-                self.shape[0] = Pos(self.shape[0]) + (0, 0)
-                self.shape[1] = Pos(self.shape[1]) + (-1, -1)
-                self.shape[2] = Pos(self.shape[2]) + (1, 1)
-                self.shape[3] = Pos(self.shape[3]) + (1, -1)
-                self.state = 0
+        
         else:
-            print(self.name)
+            turn_flag = 0
+            for shape_pos in self.shape:
+                new_shape_pos = (-shape_pos[1], shape_pos[0])
+                new_pos = Pos(new_shape_pos) + self.now_pos
+                new_pos = Pos(new_pos) + (0, 4)
+                if (Setting.board_pos[new_pos[1]][new_pos[0]] == 0 or new_shape_pos in self.shape) and new_pos[0] > 0 and new_pos[0] < 11:
+                    turn_flag += 1
+            if turn_flag == 4: 
+                for i in range(4): 
+                    self.shape[i] = (-self.shape[i][1], self.shape[i][0])
+
 
     def update(self):
         """更新方块的位置与方向"""

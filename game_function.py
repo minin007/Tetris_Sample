@@ -71,7 +71,6 @@ def update_board(screen, shape):
         if Setting.board_pos[j] == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]:
             Setting.board_pos.remove([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
             Setting.board_pos.insert(5,[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
-            Setting.board_pos.append([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 
 
 def update_screen(screen, shape):
