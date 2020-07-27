@@ -106,6 +106,9 @@ def startgame(screen):
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     if mouse_x > 450 and mouse_x < 530 and mouse_y > 550 and mouse_y < 590:
                         Setting.end_flag = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_KP_ENTER:
+                        Setting.end_flag = False
                 elif event.type == pygame.QUIT:
                     Setting.stop_flag = True
                     pygame.quit()
