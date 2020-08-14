@@ -65,17 +65,42 @@ class Shape(Sprite):
             pass
         
         else:
-            turn_flag = 0
-            for shape_pos in self.shape:
-                new_shape_pos = (-shape_pos[1], shape_pos[0])
-                new_pos = Pos(new_shape_pos) + self.now_pos
-                new_pos = Pos(new_pos) + (0, 4)
-                if (Setting.board_pos[new_pos[1]][new_pos[0]] == 0 or new_shape_pos in self.shape) and new_pos[0] > 0 and new_pos[0] < 11:
-                    turn_flag += 1
-            if turn_flag == 4: 
-                for i in range(4): 
-                    self.shape[i] = (-self.shape[i][1], self.shape[i][0])
-
+            for i in range(2):
+                for j in range(2):
+                    turn_flag = self.to_turn(i, j)
+            
+                    if turn_flag == 4:
+                        self.now_pos = Pos(self.now_pos) + (i, j)
+                        for x in range(4): 
+                            self.shape[x] = (-self.shape[x][1], self.shape[x][0])
+                        break
+                if turn_flag == 4:
+                    break    
+            
+            for i in range(0, -2, -1):
+                if turn_flag == 4:
+                    break
+                for j in range(2):
+                        
+                    turn_flag = self.to_turn(i, j)
+                    
+                    if turn_flag == 4:
+                        self.now_pos = Pos(self.now_pos) + (i, j)
+                        for x in range(4): 
+                            self.shape[x] = (-self.shape[x][1], self.shape[x][0])
+                        break
+        turn_flag = 0
+                        
+                        
+    def to_turn(self, i, j):
+        turn_flag = 0
+        for shape_pos in self.shape:
+            new_shape_pos = (-shape_pos[1], shape_pos[0])
+            new_pos = Pos(new_shape_pos) + self.now_pos
+            new_pos = Pos(new_pos) + (0 + i, 4 + j)
+            if (new_pos[0] > 0 and new_pos[0] < 11) and (Setting.board_pos[new_pos[1]][new_pos[0]] == 0 or new_shape_pos in self.shape):
+                turn_flag += 1
+        return turn_flag
 
     def update(self):
         """更新方块的位置与方向"""
